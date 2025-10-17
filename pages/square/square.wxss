@@ -1,0 +1,15 @@
+.square { height: 100vh; background: #f6f7fb; }
+.filters { display: flex; padding: 12px; gap: 12px; background: #fff; position: sticky; top: 0; z-index: 1; }
+.filter-item { padding: 6px 10px; background: #f1f5f9; border-radius: 16px; color: #111827; font-size: 14px; }
+.card { margin: 12px; padding: 12px; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; }
+.meta { margin-left: 10px; display: flex; flex-direction: column; }
+.name { color: #111827; font-weight: 600; }
+.time { color: #9ca3af; font-size: 12px; }
+.tag { margin-left: auto; color: #10b981; background: #ecfdf5; padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+.content { margin: 8px 0; color: #374151; line-height: 1.6; }
+.qimg { width: 100%; border-radius: 8px; }
+.actions { display: flex; gap: 16px; color: #6b7280; font-size: 12px; margin-top: 6px; }
+.empty { padding: 48px 0; color: #9ca3af; text-align: center; }
+

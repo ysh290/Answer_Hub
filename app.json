@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/square/square",
+    "pages/myask/myask",
+    "pages/ask/ask",
+    "pages/mycomment/mycomment",
+    "pages/mine/mine",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/user/user"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "答疑广场",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#10b981",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/square/square",
+        "text": "答疑广场"
+      },
+      {
+        "pagePath": "pages/myask/myask",
+        "text": "我的提问"
+      },
+      {
+        "pagePath": "pages/ask/ask",
+        "text": "我要提问"
+      },
+      {
+        "pagePath": "pages/mycomment/mycomment",
+        "text": "我的评论"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
