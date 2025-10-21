@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/square/square",
+    "pages/myask/myask",
+    "pages/ask/ask",
+    "pages/mycomment/mycomment",
+    "pages/mine/mine",
+    "pages/collection/collection",
+    "pages/mylike/mylike",
+    "pages/changepassword/changepassword",
+    "pages/about/about",
+    "pages/login/login",
+    "pages/forgotpassword/forgotpassword",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/user/user"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "答疑广场",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#8b949e",
+    "selectedColor": "#10b981",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/square/square",
+        "text": "答疑广场",
+        "iconPath": "static/答疑广场.png",
+        "selectedIconPath": "static/答疑广场.png"
+      },
+      {
+        "pagePath": "pages/myask/myask",
+        "text": "我的提问",
+        "iconPath": "static/我的-我的提问.png",
+        "selectedIconPath": "static/我的-我的提问.png"
+      },
+      {
+        "pagePath": "pages/ask/ask",
+        "text": "我要提问",
+        "iconPath": "static/我要提问.png",
+        "selectedIconPath": "static/我要提问.png"
+      },
+      {
+        "pagePath": "pages/mycomment/mycomment",
+        "text": "我的评论",
+        "iconPath": "static/我的评论.png",
+        "selectedIconPath": "static/我的评论.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "static/我的.png",
+        "selectedIconPath": "static/我的.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
