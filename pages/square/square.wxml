@@ -1,0 +1,35 @@
+<scroll-view class="square" scroll-y>
+  <view class="filters">
+    <picker mode="selector" range="{{examTypes}}" value="{{examTypeIndex}}" bindchange="onExamTypeChange">
+      <view class="filter-item">{{examTypes[examTypeIndex]}}</view>
+    </picker>
+    <picker mode="selector" range="{{subjects}}" value="{{subjectIndex}}" bindchange="onSubjectChange">
+      <view class="filter-item">{{subjects[subjectIndex]}}</view>
+    </picker>
+    <picker mode="selector" range="{{stages}}" value="{{stageIndex}}" bindchange="onStageChange">
+      <view class="filter-item">{{stages[stageIndex]}}</view>
+    </picker>
+  </view>
+
+  <block wx:for="{{list}}" wx:key="id">
+    <view class="card">
+      <view class="card-header">
+        <image class="avatar" src="{{item.user.avatar}}"></image>
+        <view class="meta">
+          <text class="name">{{item.user.name}}</text>
+          <text class="time">{{item.time}}</text>
+        </view>
+        <text class="tag">{{item.tag}}</text>
+      </view>
+      <view class="content">{{item.content}}</view>
+      <image wx:if="{{item.image}}" class="qimg" src="{{item.image}}" mode="widthFix"></image>
+      <view class="actions">
+        <text class="action">👍 {{item.likes}}</text>
+        <text class="action">💬 {{item.comments}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view wx:if="{{!list.length}}" class="empty">暂无数据</view>
+</scroll-view>
+

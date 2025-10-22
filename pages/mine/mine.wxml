@@ -1,0 +1,56 @@
+<view class="profile">
+  <view class="user-info" bindtap="goToUserInfo">
+    <view class="name-container">
+      <image class="user-icon" src="{{userInfo.avatar || '/static/人.png'}}"></image>
+      <view class="name-info">
+        <view class="name">{{userInfo.nickname || '用户'}}</view>
+        <view class="phone">{{userInfo.phone || '未绑定手机号'}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="stats">
+    <view class="stat" bindtap="goToMyAsk">
+      <image class="stat-icon" src="/static/提问数.png"></image>
+      <text>提问数 {{stats.total}}</text>
+    </view>
+    <view class="stat" bindtap="goToPending">
+      <image class="stat-icon" src="/static/待解答.png"></image>
+      <text>待解答 {{stats.pending}}</text>
+    </view>
+    <view class="stat" bindtap="goToResolved">
+      <image class="stat-icon" src="/static/已解答.png"></image>
+      <text>已解答 {{stats.resolved}}</text>
+    </view>
+    <view class="stat" bindtap="goToAdopted">
+      <image class="stat-icon" src="/static/已采纳.png"></image>
+      <text>已采纳 {{stats.adopted}}</text>
+    </view>
+  </view>
+  <view class="list">
+    <view class="item" bindtap="goToCollection">
+      <image class="item-icon" src="/static/我的收藏.png"></image>
+      <text>我的收藏</text>
+    </view>
+    <view class="item" bindtap="goToMyLike">
+      <image class="item-icon" src="/static/我的点赞.png"></image>
+      <text>我的点赞</text>
+    </view>
+    <view class="item" bindtap="goToMyComment">
+      <image class="item-icon" src="/static/我的-我的回答.png"></image>
+      <text>我的回答</text>
+    </view>
+    <view class="item" bindtap="goToChangePassword">
+      <image class="item-icon" src="/static/修改密码.png"></image>
+      <text>修改密码</text>
+    </view>
+    <view class="item" bindtap="logout">
+      <image class="item-icon" src="/static/退出登录.png"></image>
+      <text>退出登录</text>
+    </view>
+    <view class="item" bindtap="goToAbout">
+      <image class="item-icon" src="/static/关于我们.png"></image>
+      <text>关于我们</text>
+    </view>
+  </view>
+</view>
+

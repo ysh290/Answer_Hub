@@ -1,0 +1,27 @@
+<!--pages/user/user.wxml-->
+<view class="user-edit">
+  
+  <view class="content">
+    <view class="avatar-section">
+      <view class="avatar-container" bindtap="changeAvatar">
+        <image class="avatar" src="{{userInfo.avatar || '/static/人.png'}}"></image>
+        <view class="avatar-edit-hint">点击更换头像</view>
+      </view>
+    </view>
+    
+    <view class="form-section">
+      <view class="input-group">
+        <text class="label">昵称</text>
+        <input class="input" 
+               value="{{userInfo.nickname || 'ys 学生'}}" 
+               placeholder="请输入昵称"
+               bindinput="onNicknameInput"
+               maxlength="20" />
+      </view>
+      
+      <button class="confirm-btn" bindtap="saveUserInfo">确定</button>
+    </view>
+    
+    <view class="version-info">答疑宝典</view>
+  </view>
+</view>
