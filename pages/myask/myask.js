@@ -1,5 +1,8 @@
 const STORAGE_KEY = 'qa_questions';
+<<<<<<< HEAD
 import { requireLogin } from '../../utils/auth.js';
+=======
+>>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
 
 Page({
   data: {
@@ -8,6 +11,7 @@ Page({
     displayList: [],
     counts: { all: 0, pending: 0, resolved: 0, adopted: 0 }
   },
+<<<<<<< HEAD
   onLoad(options) {
   
     if (options.tab) {
@@ -20,6 +24,10 @@ Page({
     }
     this.loadData();
     this.applyFilter();
+=======
+  onShow() {
+    this.loadData();
+>>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
   },
   loadData() {
     const list = wx.getStorageSync(STORAGE_KEY) || [];

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .profile { 
   padding: 24px 20px; 
   background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 50%, #f0f9ff 100%); 
@@ -255,4 +256,14 @@
 .item:active text {
   color: #10b981;
 }
+=======
+.profile { padding: 16px; background: linear-gradient(180deg,#a7f3d0,#ecfeff); min-height: 100vh; }
+.avatar { width: 72px; height: 72px; border-radius: 50%; }
+.name { margin-top: 8px; font-weight: 600; color: #065f46; }
+.stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin: 12px 0; }
+.stat { background: #fff; border-radius: 10px; padding: 8px; text-align: center; color: #065f46; }
+.list { background: #fff; border-radius: 12px; overflow: hidden; }
+.item { padding: 14px 12px; border-bottom: 1px solid #f3f4f6; color: #111827; }
+.item:last-child { border-bottom: none; }
+>>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
 

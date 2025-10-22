@@ -1,4 +1,5 @@
 <!--pages/user/user.wxml-->
+<<<<<<< HEAD
 <view class="user-edit">
   
   <view class="content">
@@ -25,3 +26,6 @@
     <view class="version-info">答疑宝典</view>
   </view>
 </view>
+=======
+<text>pages/user/user.wxml</text>
+>>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6

@@ -14,7 +14,11 @@ App({
     })
   },
   globalData: {
+<<<<<<< HEAD
     userInfo: null,
     currentTab: 'all'
+=======
+    userInfo: null
+>>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
   }
 })
