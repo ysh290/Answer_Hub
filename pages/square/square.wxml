@@ -12,7 +12,7 @@
   </view>
 
   <block wx:for="{{list}}" wx:key="id">
-    <view class="card">
+    <view class="card" bindtap="goToDetail" data-id="{{item.id}}">
       <view class="card-header">
         <image class="avatar" src="{{item.user.avatar}}"></image>
         <view class="meta">
@@ -24,8 +24,11 @@
       <view class="content">{{item.content}}</view>
       <image wx:if="{{item.image}}" class="qimg" src="{{item.image}}" mode="widthFix"></image>
       <view class="actions">
-        <text class="action">👍 {{item.likes}}</text>
+        <text class="action" bindtap="likePost">👍 {{item.likes}}</text>
         <text class="action">💬 {{item.comments}}</text>
+        <text class="action">⭐ {{item.collections}}</text>
+        <view class="issolved" wx:if="{{item.issolved}}">已解答</view>
+        <view class="notsolved" wx:elif="{{!item.issolved}}">未解答</view>
       </view>
     </view>
   </block>

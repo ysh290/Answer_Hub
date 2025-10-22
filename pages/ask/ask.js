@@ -1,8 +1,5 @@
 const STORAGE_KEY = 'qa_questions';
-<<<<<<< HEAD
 import { requireLogin } from '../../utils/auth.js';
-=======
->>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
 
 Page({
   data: {
@@ -19,14 +16,11 @@ Page({
   onSubjectChange(e) { this.setData({ subjectIndex: Number(e.detail.value) }); },
   onStageChange(e) { this.setData({ stageIndex: Number(e.detail.value) }); },
   onContentInput(e) { this.setData({ content: e.detail.value }); },
-<<<<<<< HEAD
   onShow() {
     if (!requireLogin()) {
       return;
     }
   },
-=======
->>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
   chooseImage() {
     wx.chooseMedia({ count: 1, mediaType: ['image'] }).then(res => {
       const filePath = res.tempFiles[0]?.tempFilePath || '';

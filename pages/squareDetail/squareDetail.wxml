@@ -1,0 +1,69 @@
+<view class="detail-page">
+  <!-- Status Indicator -->
+  <view class="status-indicator">
+    <!-- <text class="status-text">{{questionData.status}}</text> -->
+    <view class="issolved" wx:if="{{questionData.status}}">已解答</view>
+    <view class="notsolved" wx:elif="{{!questionData.status}}">未解答</view>
+  </view>
+
+  <!-- Question Section -->
+  <view class="question-section">
+    <view class="question-content">
+      <text class="question-text">{{questionData.content}}</text>
+    </view>
+    
+    <view class="user-info">
+      <image class="user-avatar" src="{{questionData.user.avatar}}"></image>
+      <view class="user-details">
+        <text class="user-name">{{questionData.user.name}}</text>
+        <text class="post-time">{{questionData.time}}</text>
+      </view>
+      <view class="tags">
+        <text class="tag primary">{{questionData.tags[0]}}</text>
+        <text class="tag secondary" wx:if="{{questionData.tags[1]}}">{{questionData.tags[1]}}</text>
+      </view>
+    </view>
+    
+    <image class="question-image" src="{{questionData.image}}" mode="widthFix"></image>
+  </view>
+
+  <!-- Answer Section -->
+  <view class="answer-section">
+    <view class="answer-count">共有{{questionData.answerCount}}条答疑</view>
+    <view class="permission-message" wx:if="{{!questionData.hasPermission}}">
+      您暂无权限查看回答,联系客服老师成为学员即可查看
+    </view>
+  </view>
+
+  <!-- Customer Service Card -->
+  <view class="service-card">
+    <view class="service-header">
+      <!-- <image class="service-logo" src="/images/logo.png"></image> -->
+      <view class="service-info">
+        <text class="service-name">客服</text>
+        <text class="service-location">ZJ教育 浙江 湖州</text>
+      </view>
+    </view>
+    <view class="qr-container">
+      <image class="qr-code" src="/static/squareDetail/公众号二维码.jpg" mode="aspectFit"></image>
+    </view>
+    <text class="qr-instruction">扫一扫上面的二维码图案,加我为朋友。</text>
+  </view>
+
+  <!-- Bottom Action Bar -->
+  <view class="bottom-actions">
+    <view class="action-item" bindtap="onLike">
+      <!-- <image class="action-icon" src="/images/icons/like.png"></image> -->
+      <text class="action-count">👍 {{questionData.likes}}</text>
+    </view>
+    <view class="action-item" bindtap="onFavorite">
+      <!-- <image class="action-icon" src="/images/icons/star.png"></image> -->
+      <text class="action-count">💬 {{questionData.favorites}}</text>
+    </view>
+    <view class="action-item" bindtap="onShare">
+      <!-- <image class="action-icon" src="/images/icons/share.png"></image> -->
+      <text class="action-count">⭐ 分享</text>
+    </view>
+    <button class="comment-btn" bindtap="onComment">我要评论</button>
+  </view>
+</view>

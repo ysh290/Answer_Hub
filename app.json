@@ -1,19 +1,17 @@
 {
   "pages": [
     "pages/square/square",
+    "pages/squareDetail/squareDetail",
     "pages/myask/myask",
     "pages/ask/ask",
     "pages/mycomment/mycomment",
     "pages/mine/mine",
-<<<<<<< HEAD
     "pages/collection/collection",
     "pages/mylike/mylike",
     "pages/changepassword/changepassword",
     "pages/about/about",
     "pages/login/login",
     "pages/forgotpassword/forgotpassword",
-=======
->>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
     "pages/index/index",
     "pages/logs/logs",
     "pages/user/user"
@@ -25,7 +23,6 @@
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
-<<<<<<< HEAD
     "color": "#8b949e",
     "selectedColor": "#10b981",
     "backgroundColor": "#ffffff",
@@ -61,31 +58,6 @@
         "text": "我的",
         "iconPath": "static/我的.png",
         "selectedIconPath": "static/我的.png"
-=======
-    "color": "#666",
-    "selectedColor": "#10b981",
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/square/square",
-        "text": "答疑广场"
-      },
-      {
-        "pagePath": "pages/myask/myask",
-        "text": "我的提问"
-      },
-      {
-        "pagePath": "pages/ask/ask",
-        "text": "我要提问"
-      },
-      {
-        "pagePath": "pages/mycomment/mycomment",
-        "text": "我的评论"
-      },
-      {
-        "pagePath": "pages/mine/mine",
-        "text": "我的"
->>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
       }
     ]
   },

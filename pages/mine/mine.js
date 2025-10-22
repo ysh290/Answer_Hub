@@ -1,5 +1,4 @@
 const STORAGE_KEY = 'qa_questions';
-<<<<<<< HEAD
 const USER_INFO_KEY = 'user_info';
 import { requireLogin } from '../../utils/auth.js';
 
@@ -14,12 +13,6 @@ Page({
       return;
     }
     
-=======
-
-Page({
-  data: { stats: { total: 0, pending: 0, resolved: 0, adopted: 0 } },
-  onShow() {
->>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
     const list = wx.getStorageSync(STORAGE_KEY) || [];
     const stats = {
       total: list.length,
@@ -27,7 +20,6 @@ Page({
       resolved: list.filter(i => i.status==='resolved').length,
       adopted: list.filter(i => i.status==='adopted').length
     };
-<<<<<<< HEAD
     
     // 获取用户信息
     const userInfo = wx.getStorageSync(USER_INFO_KEY) || {};
@@ -161,9 +153,6 @@ Page({
         }
       }
     });
-=======
-    this.setData({ stats });
->>>>>>> 76ecb50dd8ab3b0f753cebc9bd23af6c44997fa6
   }
 });
 

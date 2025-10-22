@@ -41,7 +41,7 @@ Page({
       return;
     }
 
-    // 调用后端发送验证码接口骚鸡
+    // 调用后端发送验证码接口
     wx.showLoading({
       title: '发送中...'
     });
@@ -143,7 +143,7 @@ Page({
       return;
     }
 
-    // 调用后端重置密码接口等骚鸡
+    // 调用后端重置密码接口
     wx.showLoading({
       title: '重置中...'
     });
