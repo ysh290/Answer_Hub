@@ -1,7 +1,20 @@
 Page({
   data: {
     questionId: '',
-    questionData: null
+    questionData: {
+      id: '',
+      user: { name: '', avatar: '' },
+      time: '',
+      tags: [],
+      tag: '',
+      content: '',
+      image: '',
+      status: false,
+      answerCount: 0,
+      likes: 0,
+      favorites: 0,
+      hasPermission: false
+    }
   },
 
   onLoad(options) {
@@ -17,10 +30,11 @@ Page({
         id: '1',
         user: { 
           name: '赵修康', 
-          avatar: '/static/user/用户.png' 
+          avatar: '/static/人.png' 
         },
         time: '2025-10-16 22:03:06',
         tags: ['继电保护', '26届一批-湖北-本科'],
+        tag: '继电保护',
         content: '老师,这个麻烦看一下',
         image: '/static/继电保护.png',
         status: true,
@@ -33,10 +47,11 @@ Page({
         id: '2',
         user: { 
           name: '李海阳', 
-          avatar: '/static/user/用户.png' 
+          avatar: '/static/人.png' 
         },
         time: '8分钟前',
         tags: ['电路原理','26届一批-湖北-本科'],
+        tag: '电路原理',
         content: '老师这个怎么分析',
         image: '/static/电路原理.png',
         status: false,
@@ -45,10 +60,27 @@ Page({
         favorites: 0,
         hasPermission: false
       }
-  };
-    const questionData=mockData[id];
+    };
     
-    this.setData({ questionData});
+    const questionData = mockData[id] || {
+      id: id,
+      user: { 
+        name: '未知用户', 
+        avatar: '/static/人.png' 
+      },
+      time: '刚刚',
+      tags: ['未知'],
+      tag: '未知',
+      content: '暂无内容',
+      image: '',
+      status: false,
+      answerCount: 0,
+      likes: 0,
+      favorites: 0,
+      hasPermission: false
+    };
+    
+    this.setData({ questionData });
   },
 
   // Handle like action

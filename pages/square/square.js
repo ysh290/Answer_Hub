@@ -15,27 +15,27 @@ Page({
     const mock = [
       {
         id: '1',
-        user: { name: '解知恒', avatar: '/static/user/用户.png' },
+        user: { name: '解知恒', avatar: '/static/人.png' },
         time: '3分钟前',
         tag: '继电保护',
-        image:  '/static/继电保护.png',
+        image: '/static/继电保护.png',
         content: '这个怎么分析',
         likes: 0,
         comments: 2,
-        collections:0,
-        issolved:true
+        collections: 0,
+        issolved: true
       },
       {
         id: '2',
-        user: { name: '李海阳', avatar: '/static/user/用户.png' },
+        user: { name: '李海阳', avatar: '/static/人.png' },
         time: '8分钟前',
         tag: '电路原理',
         image: '/static/电路原理.png',
         content: '老师这个怎么分析',
         likes: 0,
         comments: 0,
-        collections:0,
-        issolved:false
+        collections: 0,
+        issolved: false
       }
     ];
     this.setData({ list: mock });

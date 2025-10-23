@@ -9,27 +9,27 @@
   <!-- Question Section -->
   <view class="question-section">
     <view class="question-content">
-      <text class="question-text">{{questionData.content}}</text>
+      <text class="question-text">{{questionData.content || '暂无内容'}}</text>
     </view>
     
     <view class="user-info">
-      <image class="user-avatar" src="{{questionData.user.avatar}}"></image>
+      <image class="user-avatar" src="{{questionData.user && questionData.user.avatar ? questionData.user.avatar : '/static/人.png'}}"></image>
       <view class="user-details">
-        <text class="user-name">{{questionData.user.name}}</text>
-        <text class="post-time">{{questionData.time}}</text>
+        <text class="user-name">{{questionData.user && questionData.user.name ? questionData.user.name : '未知用户'}}</text>
+        <text class="post-time">{{questionData.time || '刚刚'}}</text>
       </view>
       <view class="tags">
-        <text class="tag primary">{{questionData.tags[0]}}</text>
-        <text class="tag secondary" wx:if="{{questionData.tags[1]}}">{{questionData.tags[1]}}</text>
+        <text class="tag primary">{{questionData.tags && questionData.tags[0] ? questionData.tags[0] : (questionData.tag || '未知')}}</text>
+        <text class="tag secondary" wx:if="{{questionData.tags && questionData.tags[1]}}">{{questionData.tags[1]}}</text>
       </view>
     </view>
     
-    <image class="question-image" src="{{questionData.image}}" mode="widthFix"></image>
+    <image wx:if="{{questionData.image}}" class="question-image" src="{{questionData.image}}" mode="widthFix"></image>
   </view>
 
   <!-- Answer Section -->
   <view class="answer-section">
-    <view class="answer-count">共有{{questionData.answerCount}}条答疑</view>
+    <view class="answer-count">共有{{questionData.answerCount || 0}}条答疑</view>
     <view class="permission-message" wx:if="{{!questionData.hasPermission}}">
       您暂无权限查看回答,联系客服老师成为学员即可查看
     </view>
@@ -54,11 +54,11 @@
   <view class="bottom-actions">
     <view class="action-item" bindtap="onLike">
       <!-- <image class="action-icon" src="/images/icons/like.png"></image> -->
-      <text class="action-count">👍 {{questionData.likes}}</text>
+      <text class="action-count">👍 {{questionData.likes || 0}}</text>
     </view>
     <view class="action-item" bindtap="onFavorite">
       <!-- <image class="action-icon" src="/images/icons/star.png"></image> -->
-      <text class="action-count">💬 {{questionData.favorites}}</text>
+      <text class="action-count">💬 {{questionData.favorites || 0}}</text>
     </view>
     <view class="action-item" bindtap="onShare">
       <!-- <image class="action-icon" src="/images/icons/share.png"></image> -->

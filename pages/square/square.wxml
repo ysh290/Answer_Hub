@@ -14,19 +14,19 @@
   <block wx:for="{{list}}" wx:key="id">
     <view class="card" bindtap="goToDetail" data-id="{{item.id}}">
       <view class="card-header">
-        <image class="avatar" src="{{item.user.avatar}}"></image>
+        <image class="avatar" src="{{item.user && item.user.avatar ? item.user.avatar : '/static/人.png'}}"></image>
         <view class="meta">
-          <text class="name">{{item.user.name}}</text>
-          <text class="time">{{item.time}}</text>
+          <text class="name">{{item.user && item.user.name ? item.user.name : '未知用户'}}</text>
+          <text class="time">{{item.time || '刚刚'}}</text>
         </view>
-        <text class="tag">{{item.tag}}</text>
+        <text class="tag">{{item.tag || '未知'}}</text>
       </view>
-      <view class="content">{{item.content}}</view>
+      <view class="content">{{item.content || '暂无内容'}}</view>
       <image wx:if="{{item.image}}" class="qimg" src="{{item.image}}" mode="widthFix"></image>
       <view class="actions">
-        <text class="action" bindtap="likePost">👍 {{item.likes}}</text>
-        <text class="action">💬 {{item.comments}}</text>
-        <text class="action">⭐ {{item.collections}}</text>
+        <text class="action" bindtap="likePost">👍 {{item.likes || 0}}</text>
+        <text class="action">💬 {{item.comments || 0}}</text>
+        <text class="action">⭐ {{item.collections || 0}}</text>
         <view class="issolved" wx:if="{{item.issolved}}">已解答</view>
         <view class="notsolved" wx:elif="{{!item.issolved}}">未解答</view>
       </view>

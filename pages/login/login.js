@@ -21,7 +21,12 @@ Page({
     examTypes: ['国家电网', '南方电网', '其他'],
     showCampusPicker: false,
     showExamTypePicker: false,
-    agreeTerms: false
+    agreeTerms: false,
+    // 微信登录相关
+    showAvatarNickname: false,
+    tempAvatarUrl: '',
+    tempNickname: '',
+    wechatCode: ''
   },
 
   onLoad() {
@@ -468,13 +473,9 @@ Page({
       return;
     }
 
-    console.log(' 用户已同意协议，开始登录');
-    wx.showLoading({
-      title: '登录中...'
-    });
-
-    // 获取微信登录code
-    console.log(' 调用 wx.login() 获取微信登录code');
+    console.log(' 用户已同意协议，开始获取微信登录code');
+    
+    // 先获取微信登录code
     wx.login({
       success: (res) => {
         console.log(' wx.login() 成功回调:', res);
@@ -482,120 +483,14 @@ Page({
         if (res.code) {
           console.log(' 获取到微信登录code:', res.code);
           
-           const requestData = {
-             "code": res.code,
-             "userName": "Enveloping",
-             "userType": "ROLE_ADMIN"
-           };
-           console.log(' 准备发送到后端的请求数据:', requestData);
-          
-          // 调用后端微信登录接口
-          const requestUrl = apiConfig.baseURL + apiConfig.apis.login;
-          console.log(' 微信登录请求URL:', requestUrl);
-          console.log(' API配置信息:', {
-            baseURL: apiConfig.baseURL,
-            loginApi: apiConfig.apis.login,
-            fullUrl: requestUrl
-          });
-          
-           wx.request({
-             url: 'http://10.104.200.70:8888/user/login',
-             dataType: "JSON",
-             method: "POST",
-             timeout: 30000,
-             header: {
-               'Content-Type': 'application/json'
-             },
-             data: JSON.stringify({
-               "code": res.code,
-               "userName": "Enveloping",
-               "userType": "ROLE_ADMIN"
-             }),
-            success: (loginRes) => {
-              console.log(' 后端登录接口响应:', loginRes);
-              wx.hideLoading();
-              
-              if (loginRes.statusCode === 200 && loginRes.data) {
-                console.log(' 后端登录成功，响应数据:', loginRes.data);
-                
-                // 获取用户信息
-                console.log(' 开始获取微信用户信息');
-                wx.getUserProfile({
-                  desc: '用于完善用户资料',
-                  success: (userRes) => {
-                    console.log(' 获取微信用户信息成功:', userRes);
-                    
-                    const userInfo = {
-                      phone: loginRes.data.phone || '',
-                      nickname: userRes.userInfo.nickName || '微信用户',
-                      avatar: userRes.userInfo.avatarUrl || '',
-                      token: loginRes.data.token,
-                      userType: loginRes.data.userType || 'ROLE_USER',
-                      isLogin: true,
-                      isWechatLogin: true
-                    };
-                    
-                    console.log(' 保存用户信息到本地存储:', userInfo);
-                    wx.setStorageSync('user_info', userInfo);
-
-                    console.log(' 微信登录完成，显示成功提示');
-                    wx.showToast({
-                      title: '登录成功',
-                      icon: 'success'
-                    });
-
-                    setTimeout(() => {
-                      console.log(' 返回上一页');
-                      wx.navigateBack();
-                    }, 1500);
-                  },
-                  fail: (err) => {
-                    console.log('获取用户信息失败:', err);
-                    
-                    const userInfo = {
-                      phone: loginRes.data.phone || '',
-                      nickname: '微信用户',
-                      token: loginRes.data.token,
-                      userType: loginRes.data.userType || 'ROLE_USER',
-                      isLogin: true,
-                      isWechatLogin: true
-                    };
-                    
-                    console.log('降级：保存基本用户信息:', userInfo);
-                    wx.setStorageSync('user_info', userInfo);
-
-                    console.log(' 微信登录完成（降级），显示成功提示');
-                    wx.showToast({
-                      title: '登录成功',
-                      icon: 'success'
-                    });
-
-                    setTimeout(() => {
-                      console.log(' 返回上一页');
-                      wx.navigateBack();
-                    }, 1500);
-                  }
-                });
-              } else {
-                console.log(' 后端登录失败，状态码:', loginRes.statusCode, '响应数据:', loginRes.data);
-                wx.showToast({
-                  title: loginRes.data.message || '登录失败',
-                  icon: 'none'
-                });
-              }
-            },
-            fail: (err) => {
-              wx.hideLoading();
-              console.error(' 微信登录请求失败:', err);
-              wx.showToast({
-                title: '网络错误，请重试',
-                icon: 'none'
-              });
-            }
+          // 保存code，显示头像昵称填写界面
+          this.setData({
+            wechatCode: res.code,
+            showAvatarNickname: true,
+            tempNickname: '微信用户' + Math.floor(Math.random() * 1000)
           });
         } else {
           console.log(' 未获取到微信登录code，响应:', res);
-          wx.hideLoading();
           wx.showToast({
             title: '获取微信登录信息失败',
             icon: 'none'
@@ -603,10 +498,121 @@ Page({
         }
       },
       fail: (err) => {
-        wx.hideLoading();
         console.error(' wx.login() 调用失败:', err);
         wx.showToast({
           title: '微信登录失败',
+          icon: 'none'
+        });
+      }
+    });
+  },
+
+  // 选择头像
+  onChooseAvatar(e) {
+    console.log(' 选择头像:', e.detail);
+    this.setData({
+      tempAvatarUrl: e.detail.avatarUrl
+    });
+  },
+
+  // 输入昵称
+  onNicknameInput(e) {
+    this.setData({
+      tempNickname: e.detail.value
+    });
+  },
+
+  // 取消头像昵称填写
+  cancelAvatarNickname() {
+    this.setData({
+      showAvatarNickname: false,
+      tempAvatarUrl: '',
+      tempNickname: '',
+      wechatCode: ''
+    });
+  },
+
+  // 确认头像昵称填写
+  confirmAvatarNickname() {
+    const { tempNickname, tempAvatarUrl, wechatCode } = this.data;
+    
+    if (!tempNickname.trim()) {
+      wx.showToast({
+        title: '请输入昵称',
+        icon: 'none'
+      });
+      return;
+    }
+
+    console.log(' 确认用户信息，开始登录');
+    
+    // 显示加载提示
+    wx.showLoading({
+      title: '登录中...'
+    });
+
+    // 调用后端微信登录接口
+    wx.request({
+      url: `${apiConfig.baseURL}/user/login`,
+      method: "POST",
+      timeout: 30000,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      data: {
+        "code": wechatCode,
+        "userName": tempNickname,
+        "userType": "学生"
+      },
+      success: (loginRes) => {
+        console.log(' 后端登录接口响应:', loginRes);
+        wx.hideLoading();
+        
+        if (loginRes.statusCode === 200 && loginRes.data) {
+          console.log(' 后端登录成功，响应数据:', loginRes.data);
+          
+          const userInfo = {
+            nickname: loginRes.data.data?.userName || tempNickname,
+            avatar: tempAvatarUrl || '/static/user/用户.png',
+            token: loginRes.data.data?.token || '',
+            userType: loginRes.data.data?.userType || '学生',
+            isLogin: true,
+            isWechatLogin: true
+          };
+          
+          console.log(' 保存用户信息到本地存储:', userInfo);
+          wx.setStorageSync('user_info', userInfo);
+
+          // 隐藏头像昵称填写界面
+          this.setData({
+            showAvatarNickname: false,
+            tempAvatarUrl: '',
+            tempNickname: '',
+            wechatCode: ''
+          });
+
+          wx.showToast({
+            title: '登录成功',
+            icon: 'success'
+          });
+
+          setTimeout(() => {
+            console.log(' 返回上一页');
+            wx.navigateBack();
+          }, 1500);
+        } else {
+          console.log(' 后端登录失败，状态码:', loginRes.statusCode, '响应数据:', loginRes.data);
+          wx.showToast({
+            title: loginRes.data.message || '登录失败',
+            icon: 'none'
+          });
+        }
+      },
+      fail: (err) => {
+        wx.hideLoading();
+        console.error(' 微信登录请求失败:', err);
+        wx.showToast({
+          title: '网络错误，请重试',
           icon: 'none'
         });
       }
