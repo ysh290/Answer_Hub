@@ -25,9 +25,31 @@
 
   <view class="section">
     <view class="label">添加图片</view>
-    <view class="uploader" bindtap="chooseImage">
-      <image wx:if="{{image}}" src="{{image}}" mode="aspectFill"></image>
-      <view wx:else class="uploader-placeholder">点击选择(最多1张)</view>
+    <view class="images-container">
+      <!-- 已选择的图片 -->
+      <view class="image-item" wx:for="{{images}}" wx:key="id" data-index="{{index}}">
+        <image 
+          class="image-preview" 
+          src="{{item.url}}" 
+          mode="aspectFill"
+          bindtap="previewImage"
+          data-index="{{index}}"
+        ></image>
+        <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">
+          <text class="delete-icon">×</text>
+        </view>
+      </view>
+      
+      <!-- 添加图片按钮 -->
+      <view 
+        class="add-image-btn" 
+        bindtap="chooseImage"
+        wx:if="{{images.length < maxImages}}"
+      >
+        <view class="add-icon">+</view>
+        <text class="add-text">添加图片</text>
+        <text class="add-hint">{{images.length}}/{{maxImages}}</text>
+      </view>
     </view>
   </view>
 

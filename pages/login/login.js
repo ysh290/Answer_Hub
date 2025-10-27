@@ -562,7 +562,7 @@ Page({
       data: {
         "code": wechatCode,
         "userName": tempNickname,
-        "userType": "学生"
+        "userType": "role_student"
       },
       success: (loginRes) => {
         console.log(' 后端登录接口响应:', loginRes);

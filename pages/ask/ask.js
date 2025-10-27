@@ -10,7 +10,8 @@ Page({
     subjectIndex: 0,
     stageIndex: 0,
     content: '',
-    image: ''
+    images: [], // 改为数组存储多张图片
+    maxImages: 9 // 最多上传9张图片
   },
   onExamTypeChange(e) { this.setData({ examTypeIndex: Number(e.detail.value) }); },
   onSubjectChange(e) { this.setData({ subjectIndex: Number(e.detail.value) }); },
@@ -21,26 +22,86 @@ Page({
       return;
     }
   },
+  // 选择图片
   chooseImage() {
-    wx.chooseMedia({ count: 1, mediaType: ['image'] }).then(res => {
-      const filePath = res.tempFiles[0]?.tempFilePath || '';
-      this.setData({ image: filePath });
-    }).catch(()=>{});
+    const { images, maxImages } = this.data;
+    const remainingCount = maxImages - images.length;
+    
+    if (remainingCount <= 0) {
+      wx.showToast({
+        title: `最多只能上传${maxImages}张图片`,
+        icon: 'none'
+      });
+      return;
+    }
+
+    wx.chooseMedia({
+      count: remainingCount,
+      mediaType: ['image'],
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera']
+    }).then(res => {
+      const newImages = res.tempFiles.map(file => ({
+        id: 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+        url: file.tempFilePath,
+        size: file.size
+      }));
+      
+      this.setData({
+        images: [...images, ...newImages]
+      });
+    }).catch(err => {
+      console.error('选择图片失败:', err);
+      wx.showToast({
+        title: '选择图片失败',
+        icon: 'none'
+      });
+    });
+  },
+
+  // 删除图片
+  deleteImage(e) {
+    const { index } = e.currentTarget.dataset;
+    const { images } = this.data;
+    
+    wx.showModal({
+      title: '确认删除',
+      content: '确定要删除这张图片吗？',
+      success: (res) => {
+        if (res.confirm) {
+          images.splice(index, 1);
+          this.setData({ images });
+        }
+      }
+    });
+  },
+
+  // 预览图片
+  previewImage(e) {
+    const { index } = e.currentTarget.dataset;
+    const { images } = this.data;
+    const urls = images.map(img => img.url);
+    
+    wx.previewImage({
+      current: urls[index],
+      urls: urls
+    });
   },
   aiAnswer() {
     wx.showToast({ title: 'AI正在思考...', icon: 'none' });
   },
   submitQuestion() {
-    const { content } = this.data;
+    const { content, images } = this.data;
     if (!content.trim()) {
       wx.showToast({ title: '请输入问题内容', icon: 'none' });
       return;
     }
+    
     const list = wx.getStorageSync(STORAGE_KEY) || [];
     const item = {
       id: 'q_' + Date.now(),
       content: this.data.content,
-      image: this.data.image,
+      images: images, // 存储多张图片
       examType: this.data.examTypes[this.data.examTypeIndex],
       subject: this.data.subjects[this.data.subjectIndex],
       stage: this.data.stages[this.data.stageIndex],
