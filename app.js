@@ -62,8 +62,7 @@ App({
   },
 
 cos :new COS({
-    SecretId: 'AKIDxmR0Oi17ze4JK7i6IHzTtDMK4nOmwskR', 
-    SecretKey: 'YwQo4DN3hImGeuypgBaqy1xmOorjS0Qj'
+    
 }),
 uploadImage: function (filePath, options = {}) {
     return new Promise((resolve, reject) => {
