@@ -1,4 +1,5 @@
 // app.js
+const COS = require('./utils/cos-wx-sdk-v5');
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -58,5 +59,44 @@ App({
   globalData: {
     userInfo: null,
     currentTab: 'all'
+  },
+
+cos :new COS({
+    SecretId: 'AKIDxmR0Oi17ze4JK7i6IHzTtDMK4nOmwskR', 
+    SecretKey: 'YwQo4DN3hImGeuypgBaqy1xmOorjS0Qj'
+}),
+uploadImage: function (filePath, options = {}) {
+    return new Promise((resolve, reject) => {
+      const userInfo = this.getUserInfo()
+      
+      // 生成文件名，可以添加时间戳确保唯一性
+      const timestamp = new Date().getTime()
+      const fileName = `image_${timestamp}_${filePath.id}.jpg`
+      
+      // 构建完整的文件路径
+      const cosKey = `questions/${userInfo.userId}/${fileName}`
+      this.cos.postObject({
+        Bucket: 'answer-hub-1258140596', // 存储桶名称
+        Region: 'ap-shanghai', // 存储桶地域
+        Key: cosKey, // 上传到 COS 的文件路径
+        FilePath: filePath.url,
+        onProgress: function (progressData) {
+          console.log(JSON.stringify(progressData));
+        }
+      }, (err, data) => {
+        if (err) {
+          console.error('上传失败:', err);
+          wx.showToast({
+            title: '上传失败',
+            icon: 'none'
+          });
+          reject(err);
+        } else {
+          console.log('上传成功:', data);
+          const filecontent = data.Location; // 上传成功后获取文件的访问 URL
+          resolve('https://' + filecontent);
+        }
+      });
+    });
   }
 })

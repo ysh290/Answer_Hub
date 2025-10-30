@@ -1,0 +1,22 @@
+{
+  "name": "qa_hub",
+  "version": "1.0.0",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ysh290/Answer_Hub.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ysh290/Answer_Hub/issues"
+  },
+  "homepage": "https://github.com/ysh290/Answer_Hub#readme",
+  "description": "",
+  "dependencies": {
+    "cos-wx-sdk-v5": "^1.8.0"
+  }
+}

@@ -14,15 +14,21 @@
   <block wx:for="{{list}}" wx:key="id">
     <view class="card" bindtap="goToDetail" data-id="{{item.id}}">
       <view class="card-header">
-        <image class="avatar" src="{{item.user && item.user.avatar ? item.user.avatar : '/static/人.png'}}"></image>
+        <image class="avatar" src="{{item.userDo.avatar || '/static/人.png'}}"></image>
         <view class="meta">
-          <text class="name">{{item.user && item.user.name ? item.user.name : '未知用户'}}</text>
-          <text class="time">{{item.time || '刚刚'}}</text>
+          <text class="name">{{item.userDo.userName ||'未知用户'}}</text>
+          <text class="time">{{item.posts.createTime || '刚刚'}}</text>
         </view>
-        <text class="tag">{{item.tag || '未知'}}</text>
+        <text class="tag">{{item.posts.askSubject || '未知'}}</text>
       </view>
-      <view class="content">{{item.content || '暂无内容'}}</view>
-      <image wx:if="{{item.image}}" class="qimg" src="{{item.image}}" mode="widthFix"></image>
+      <view class="content">{{item.posts.question || '暂无内容'}}</view>
+      <!-- 单图显示 -->
+      <view wx:if="{{item.askImages && item.askImages.length}}">
+        <view wx:for="{{item.askImages}}" wx:key="index">
+         <image class="qimg" src="{{item.imageUrl}}" mode="widthFix"></image>
+        </view>
+      </view>
+      
       <view class="actions">
         <text class="action" bindtap="likePost">👍 {{item.likes || 0}}</text>
         <text class="action">💬 {{item.comments || 0}}</text>

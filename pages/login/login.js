@@ -221,7 +221,7 @@ Page({
     const requestData = {
       "code": phone, // 使用手机号作为登录主提
       "userName": phone,
-      "userType": "ROLE_USER"
+      "userType": "ROLE_USER",
     };
     
     console.log(' 发送登录请求数据:', requestData);
@@ -383,7 +383,7 @@ Page({
       "password": password,
       "campus": campus,
       "examType": examType,
-      "userType": "ROLE_USER"
+      "userType": "role_student"
     };
     
     console.log(' 发送注册请求数据:', requestData);
@@ -562,7 +562,8 @@ Page({
       data: {
         "code": wechatCode,
         "userName": tempNickname,
-        "userType": "role_student"
+        "userType": "role_student",
+        "avatar": tempAvatarUrl,
       },
       success: (loginRes) => {
         console.log(' 后端登录接口响应:', loginRes);
@@ -572,12 +573,14 @@ Page({
           console.log(' 后端登录成功，响应数据:', loginRes.data);
           
           const userInfo = {
+            userId: loginRes.data.data.userId,
             nickname: loginRes.data.data?.userName || tempNickname,
             avatar: tempAvatarUrl || '/static/user/用户.png',
             token: loginRes.data.data?.token || '',
             userType: loginRes.data.data?.userType || '学生',
             isLogin: true,
-            isWechatLogin: true
+            isWechatLogin: true,
+            
           };
           
           console.log(' 保存用户信息到本地存储:', userInfo);

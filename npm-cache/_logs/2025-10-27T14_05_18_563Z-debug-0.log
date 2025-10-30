@@ -1,0 +1,36 @@
+0 verbose cli D:\FrontendDevelopmentTool\nodejs\node.exe D:\FrontendDevelopmentTool\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v23.10.0
+3 silly config load:file:D:\FrontendDevelopmentTool\nvm\nvm\v23.10.0\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\17505\AppData\Local\Microsoft\TypeScript\4.1\.npmrc
+5 silly config load:file:C:\Users\17505\.npmrc
+6 silly config load:file:D:\FrontendDevelopmentTool\nodejs\etc\npmrc
+7 verbose title npm install @types/crypto-js@ts4.1
+8 verbose argv "install" "--ignore-scripts" "@types/crypto-js@ts4.1" "--save-dev" "--user-agent" "typesInstaller/4.1.2"
+9 verbose logfile logs-max:10 dir:D:\frontent_projects\QA_Hub\QA_Hub\npm-cache\_logs\2025-10-27T14_05_18_563Z-
+10 verbose logfile D:\frontent_projects\QA_Hub\QA_Hub\npm-cache\_logs\2025-10-27T14_05_18_563Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly packumentCache corgi:https://registry.npmjs.org/@types%2fcrypto-js cache-miss
+14 http fetch GET 200 https://registry.npmjs.org/@types%2fcrypto-js 767ms (cache revalidated)
+15 silly packumentCache corgi:https://registry.npmjs.org/@types%2fcrypto-js set size:32525 disposed:false
+16 silly idealTree buildDeps
+17 silly fetch manifest @types/crypto-js@4.1.1
+18 silly packumentCache full:https://registry.npmjs.org/@types%2fcrypto-js cache-miss
+19 http fetch GET 200 https://registry.npmjs.org/@types%2fcrypto-js 232ms (cache revalidated)
+20 silly packumentCache full:https://registry.npmjs.org/@types%2fcrypto-js set size:68829 disposed:false
+21 silly placeDep ROOT @types/crypto-js@4.1.1 OK for:  want: 4.1.1
+22 silly reify moves {}
+23 silly audit bulk request { 'types-registry': [ '0.1.744' ], '@types/crypto-js': [ '4.1.1' ] }
+24 http cache @types/crypto-js@https://registry.npmjs.org/@types/crypto-js/-/crypto-js-4.1.1.tgz 0ms (cache hit)
+25 silly tarball no local data for @types/crypto-js@https://registry.npmjs.org/@types/crypto-js/-/crypto-js-4.1.1.tgz. Extracting by manifest.
+26 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 215ms
+27 silly audit report {}
+28 http fetch GET 200 https://registry.npmjs.org/@types/crypto-js/-/crypto-js-4.1.1.tgz 1522ms (cache miss)
+29 silly ADD node_modules/@types/crypto-js
+30 verbose cwd C:\Users\17505\AppData\Local\Microsoft\TypeScript\4.1
+31 verbose os Windows_NT 10.0.26100
+32 verbose node v23.10.0
+33 verbose npm  v10.9.2
+34 verbose exit 0
+35 info ok

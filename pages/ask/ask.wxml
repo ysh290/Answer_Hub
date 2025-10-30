@@ -54,9 +54,11 @@
   </view>
 
   <view class="actions">
-    <button class="ai" bindtap="aiAnswer">AI答疑</button>
-    <button class="teacher" bindtap="submitQuestion">名师答疑</button>
+    <button class="ai" bindtap="aiAnswer" disabled="{{isSubmitting}}">AI答疑</button>
+    <button class="teacher" bindtap="submitQuestion" disabled="{{isSubmitting}}">名师答疑</button>
   </view>
-  <button class="submit" bindtap="submitQuestion">提交</button>
+  <button class="submit" bindtap="submitQuestion" disabled="{{isSubmitting}}">
+    {{isSubmitting ? '提交中...' : '提交'}}
+  </button>
 </view>
 

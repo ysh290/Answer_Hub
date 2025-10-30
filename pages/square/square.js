@@ -1,3 +1,6 @@
+const apiConfig = require('../../config/api.js');
+const app = getApp(); // 获取全局 App 实例
+const userInfo = app.globalData.userInfo; // 从全局变量中获取用户信息
 Page({
   data: {
     examTypes: ['计算机类', '英语类', '公共课'],
@@ -6,39 +9,50 @@ Page({
     examTypeIndex: 0,
     subjectIndex: 0,
     stageIndex: 0,
-    list: []
+    list: [],
+    page: 1, // 当前页码
+    pageSize: 10, // 每页显示的数量
+    loading: false,
+    noMore: false
   },
   onLoad() {
-    this.loadMock();
+    this.loadPost();
   },
-  loadMock() {
-    const mock = [
-      {
-        id: '1',
-        user: { name: '解知恒', avatar: '/static/人.png' },
-        time: '3分钟前',
-        tag: '继电保护',
-        image: '/static/继电保护.png',
-        content: '这个怎么分析',
-        likes: 0,
-        comments: 2,
-        collections: 0,
-        issolved: true
-      },
-      {
-        id: '2',
-        user: { name: '李海阳', avatar: '/static/人.png' },
-        time: '8分钟前',
-        tag: '电路原理',
-        image: '/static/电路原理.png',
-        content: '老师这个怎么分析',
-        likes: 0,
-        comments: 0,
-        collections: 0,
-        issolved: false
-      }
-    ];
-    this.setData({ list: mock });
+  onReachBottom() {
+    if (!this.data.loading && !this.data.noMore) {
+      this.loadPosts();
+    }
+  },
+  loadPost() {
+    const { page, pageSize } = this.data;
+      this.setData({ loading: true });
+      wx.request({
+        url: `${apiConfig.baseURL}/community/getPosts`, // 后端接口地址
+        method: 'GET',
+        header: {
+          'Authorization': `${userInfo.token}`
+        },
+        data: {
+          page,
+          pageSize
+        },
+        success: (res) => {
+          const { data } = res.data;
+          if (data.length === 0) {
+            this.setData({ noMore: true });
+          } else {
+          
+            this.setData({
+              list: this.data.list.concat(data), // 将新数据追加到列表
+              page: this.data.page + 1 // 更新页码
+            });
+            console.log(data)
+          }
+        },
+        complete: () => {
+          this.setData({ loading: false });
+        }
+      });
   },
   likePost(e){
 
