@@ -1,0 +1,82 @@
+0 verbose cli D:\FrontendDevelopmentTool\nodejs\node.exe D:\FrontendDevelopmentTool\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v23.10.0
+3 silly config load:file:D:\FrontendDevelopmentTool\nvm\nvm\v23.10.0\node_modules\npm\npmrc
+4 silly config load:file:D:\fly_cursor_free\fly-cursor-free\.npmrc
+5 silly config load:file:C:\Users\17505\.npmrc
+6 silly config load:file:D:\FrontendDevelopmentTool\nodejs\etc\npmrc
+7 verbose title npm init
+8 verbose argv "init"
+9 verbose logfile logs-max:10 dir:D:\frontent_projects\QA_Hub\QA_Hub\npm-cache\_logs\2025-10-31T06_05_25_496Z-
+10 verbose logfile D:\frontent_projects\QA_Hub\QA_Hub\npm-cache\_logs\2025-10-31T06_05_25_496Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly package data {
+13 silly package data   name: 'flycursor',
+13 silly package data   version: '1.1.3',
+13 silly package data   description: 'FlyCursor',
+13 silly package data   main: './out/main/index.js',
+13 silly package data   author: 'fly',
+13 silly package data   scripts: {
+13 silly package data     format: 'prettier --write .',
+13 silly package data     lint: 'eslint --cache .',
+13 silly package data     dev: 'chcp 65001 > NUL && vite --config vite.renderer.config.mjs',
+13 silly package data     postinstall: 'electron-builder install-app-deps',
+13 silly package data     'build:unpack': 'npm run build && electron-builder --dir',
+13 silly package data     'build:win': 'npm run build && electron-builder --win',
+13 silly package data     'build:mac': 'npm run build && electron-builder --mac',
+13 silly package data     'build:linux': 'npm run build && electron-builder --linux',
+13 silly package data     preview: 'electron-builder --dir',
+13 silly package data     'build:win:hash': 'yarn build:win && node src/script/inject-hash.cjs && electron-builder --win'
+13 silly package data   },
+13 silly package data   dependencies: {
+13 silly package data     '@electron-toolkit/preload': '^3.0.1',
+13 silly package data     '@electron-toolkit/utils': '^4.0.0',
+13 silly package data     axios: '^1.9.0',
+13 silly package data     'electron-store': '^10.1.0',
+13 silly package data     'electron-updater': '^6.3.9',
+13 silly package data     'element-plus': '^2.9.11',
+13 silly package data     'jwt-decode': '^4.0.0',
+13 silly package data     'node-machine-id': '^1.1.12',
+13 silly package data     pinia: '^3.0.3',
+13 silly package data     sqlite3: '^5.1.7',
+13 silly package data     'stream-json': '^1.9.1'
+13 silly package data   },
+13 silly package data   devDependencies: {
+13 silly package data     '@electron-toolkit/eslint-config': '^2.0.0',
+13 silly package data     '@electron-toolkit/eslint-config-prettier': '^3.0.0',
+13 silly package data     '@iconify-json/ep': '^1.2.2',
+13 silly package data     '@swc/core': '^1.12.5',
+13 silly package data     '@vitejs/plugin-vue': '^5.2.3',
+13 silly package data     chokidar: '^4.0.3',
+13 silly package data     'electron-vite': '^3.1.0',
+13 silly package data     eslint: '^9.24.0',
+13 silly package data     'eslint-plugin-vue': '^10.0.0',
+13 silly package data     glob: '^11.0.3',
+13 silly package data     'iconv-lite': '^0.6.3',
+13 silly package data     prettier: '^3.5.3',
+13 silly package data     rimraf: '^6.0.1',
+13 silly package data     sass: '^1.89.1',
+13 silly package data     'unplugin-auto-import': '^19.3.0',
+13 silly package data     'unplugin-vue-components': '^28.7.0',
+13 silly package data     vite: '^6.2.6',
+13 silly package data     'vite-plugin-javascript-obfuscator': '^3.1.0',
+13 silly package data     vue: '^3.5.13',
+13 silly package data     'vue-eslint-parser': '^10.1.3'
+13 silly package data   },
+13 silly package data   repository: {
+13 silly package data     type: 'git',
+13 silly package data     url: 'git+https://github.com/liqiang-xxfy/fly-cursor-free.git'
+13 silly package data   },
+13 silly package data   license: 'ISC',
+13 silly package data   bugs: { url: 'https://github.com/liqiang-xxfy/fly-cursor-free/issues' },
+13 silly package data   homepage: 'https://github.com/liqiang-xxfy/fly-cursor-free#readme',
+13 silly package data   [Symbol(newline)]: '\r\n',
+13 silly package data   [Symbol(indent)]: '    '
+13 silly package data }
+14 verbose cwd D:\fly_cursor_free\fly-cursor-free
+15 verbose os Windows_NT 10.0.26100
+16 verbose node v23.10.0
+17 verbose npm  v10.9.2
+18 verbose exit 0
+19 info ok

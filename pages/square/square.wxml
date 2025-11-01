@@ -31,7 +31,7 @@
       
       <view class="actions">
         <text class="action" bindtap="likePost">👍 {{item.likes || 0}}</text>
-        <text class="action">💬 {{item.comments || 0}}</text>
+        <text class="action">💬 {{item.posts.commentCount || 0}}</text>
         <text class="action">⭐ {{item.collections || 0}}</text>
         <view class="issolved" wx:if="{{item.issolved}}">已解答</view>
         <view class="notsolved" wx:elif="{{!item.issolved}}">未解答</view>
